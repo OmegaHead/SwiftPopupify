@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'SwiftPopupify_Example' do
+  pod 'SwiftPopupify', :path => '../'
+
+  target 'SwiftPopupify_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
