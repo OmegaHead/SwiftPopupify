@@ -1,0 +1,6 @@
+framework module SwiftPopupify {
+  umbrella header "SwiftPopupify-umbrella.h"
+
+  export *
+  module * { export * }
+}

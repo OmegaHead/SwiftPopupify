@@ -1,0 +1,6 @@
+framework module Pods_SwiftPopupify_Tests {
+  umbrella header "Pods-SwiftPopupify_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

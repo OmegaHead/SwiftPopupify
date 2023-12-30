@@ -1,0 +1,16 @@
+PODS:
+  - SwiftPopupify (0.1.0)
+
+DEPENDENCIES:
+  - SwiftPopupify (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftPopupify:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftPopupify: 9ea04a0875fdc1ae96d0c75c54a4dd95615de5df
+
+PODFILE CHECKSUM: 015009891233cf4afb1e6af79e09398704999b51
+
+COCOAPODS: 1.14.3
