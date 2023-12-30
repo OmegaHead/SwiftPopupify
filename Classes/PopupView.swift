@@ -9,6 +9,8 @@ import UIKit
 
 class PopupView: UIView {
 
+    // MARK: - Private
+
     private let delimeterView = UIView()
 
     private func setupDelimeterView() {
@@ -25,6 +27,8 @@ class PopupView: UIView {
             delimeterView.widthAnchor.constraint(equalToConstant: Constants.Delimeter.width)
         ])
     }
+
+    // MARK: - Life cycle
 
     init() {
         super.init(frame: .zero)

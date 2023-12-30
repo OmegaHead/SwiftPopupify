@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 public class UIPopupViewController: UIViewController {
 
     private let popupView = PopupView()
@@ -34,7 +32,6 @@ public class UIPopupViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-
         popupView.translatesAutoresizingMaskIntoConstraints = false
         mainView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -57,45 +54,45 @@ public class UIPopupViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
     }
-//
-//    private func show() {
-//        guard let presentingView = presentingViewController?.view else { return }
-//
-//        view.frame = CGRect(
-//            x: 0,
-//            y: presentingView.frame.maxY,
-//            width: presentingView.frame.width,
-//            height: preferredContentSize.height
-//        )
-//
-//        presentingView.addSubview(view)
-//
-//        UIView.animate(withDuration: 0.3) {
-//            self.view.frame = CGRect(
-//                x: 0,
-//                y: presentingView.frame.maxY - self.preferredContentSize.height,
-//                width: presentingView.frame.width,
-//                height: self.preferredContentSize.height
-//            )
-//
-//            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-//        }
-//    }
-//
-//    private func hide() {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.view.frame = CGRect(
-//                x: 0,
-//                y: self.view.frame.maxY,
-//                width: self.view.frame.width,
-//                height: self.view.frame.height
-//            )
-//
-//            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-//        }) { _ in
-//            self.dismiss(animated: false, completion: nil)
-//        }
-//    }
+
+    private func show() {
+        guard let presentingView = presentingViewController?.view else { return }
+
+        view.frame = CGRect(
+            x: 0,
+            y: presentingView.frame.maxY,
+            width: presentingView.frame.width,
+            height: preferredContentSize.height
+        )
+
+        presentingView.addSubview(view)
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame = CGRect(
+                x: 0,
+                y: presentingView.frame.maxY - self.preferredContentSize.height,
+                width: presentingView.frame.width,
+                height: self.preferredContentSize.height
+            )
+
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        }
+    }
+
+    private func hide() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.frame = CGRect(
+                x: 0,
+                y: self.view.frame.maxY,
+                width: self.view.frame.width,
+                height: self.view.frame.height
+            )
+
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        }) { _ in
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
 
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: view)
