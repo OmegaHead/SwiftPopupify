@@ -37,17 +37,18 @@ public class UIPopupViewController: UIViewController {
             popupView.rightAnchor.constraint(equalTo: view.rightAnchor),
             popupView.heightAnchor.constraint(equalToConstant: Constants.Popup.height)
         ])
-        popupBottomConstraint = popupView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        popupBottomConstraint = popupView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.Popup.bottomConstraintHidden)
         popupBottomConstraint?.isActive = true
+
+        let window = UIApplication.shared.windows.first
+        let bottomSafeAreaHeight = window?.safeAreaInsets.bottom ?? 0.0
 
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: popupView.topAnchor, constant: Constants.MainView.topConstraint),
             mainView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            mainView.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -bottomSafeAreaHeight)
         ])
-        popupBottomConstraint?.constant = -Constants.Popup.bottomConstraintHidden
-
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -64,23 +65,19 @@ public class UIPopupViewController: UIViewController {
     private func show() {
         view.layoutIfNeeded()
         self.popupBottomConstraint?.constant = Constants.Popup.bottomConstraintShown
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.view.layoutIfNeeded()
         }
     }
 
     private func hide() {
+        view.layoutIfNeeded()
+        self.popupBottomConstraint?.constant = Constants.Popup.bottomConstraintHidden
         UIView.animate(withDuration: 0.3, animations: {
-            self.view.frame = CGRect(
-                x: 0,
-                y: self.view.frame.maxY,
-                width: self.view.frame.width,
-                height: self.view.frame.height
-            )
-
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            self.view.layoutIfNeeded()
         }) { _ in
             self.dismiss(animated: false, completion: nil)
         }
@@ -90,7 +87,7 @@ public class UIPopupViewController: UIViewController {
         let location = sender.location(in: view)
 
         if !popupView.frame.contains(location) {
-            dismiss(animated: false, completion: nil)
+            hide()
         }
     }
 }
@@ -100,7 +97,7 @@ private extension UIPopupViewController {
 
         enum Popup {
             static let height = 430.0
-            static let bottomConstraintHidden = -height
+            static let bottomConstraintHidden = height
             static let bottomConstraintShown = 0.0
         }
 
