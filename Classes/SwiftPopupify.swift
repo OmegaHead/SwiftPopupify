@@ -11,6 +11,7 @@ import UIKit
 public class UIPopupViewController: UIViewController {
 
     private let popupView = PopupView()
+    private var popupBottomConstraint: NSLayoutConstraint? = nil
     private let mainView: UIView
 
     public init(mainView: UIView) {
@@ -27,20 +28,17 @@ public class UIPopupViewController: UIViewController {
         addTapGestureRecognizer()
         view.addSubview(popupView)
         popupView.addSubview(mainView)
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
         popupView.translatesAutoresizingMaskIntoConstraints = false
         mainView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            popupView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             popupView.leftAnchor.constraint(equalTo: view.leftAnchor),
             popupView.rightAnchor.constraint(equalTo: view.rightAnchor),
             popupView.heightAnchor.constraint(equalToConstant: Constants.Popup.height)
         ])
+        popupBottomConstraint = popupView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        popupBottomConstraint?.isActive = true
 
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: popupView.topAnchor, constant: Constants.MainView.topConstraint),
@@ -48,6 +46,14 @@ public class UIPopupViewController: UIViewController {
             mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        popupBottomConstraint?.constant = -Constants.Popup.bottomConstraintHidden
+
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        show()
     }
 
     private func addTapGestureRecognizer() {
@@ -56,24 +62,10 @@ public class UIPopupViewController: UIViewController {
     }
 
     private func show() {
-        guard let presentingView = presentingViewController?.view else { return }
-
-        view.frame = CGRect(
-            x: 0,
-            y: presentingView.frame.maxY,
-            width: presentingView.frame.width,
-            height: preferredContentSize.height
-        )
-
-        presentingView.addSubview(view)
-
+        view.layoutIfNeeded()
+        self.popupBottomConstraint?.constant = Constants.Popup.bottomConstraintShown
         UIView.animate(withDuration: 0.3) {
-            self.view.frame = CGRect(
-                x: 0,
-                y: presentingView.frame.maxY - self.preferredContentSize.height,
-                width: presentingView.frame.width,
-                height: self.preferredContentSize.height
-            )
+            self.view.layoutIfNeeded()
 
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         }
@@ -108,6 +100,8 @@ private extension UIPopupViewController {
 
         enum Popup {
             static let height = 430.0
+            static let bottomConstraintHidden = -height
+            static let bottomConstraintShown = 0.0
         }
 
         enum MainView {
