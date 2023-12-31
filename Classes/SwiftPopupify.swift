@@ -104,7 +104,12 @@ public class UIPopupViewController: UIViewController {
         switch sender.state {
         case .changed:
 
-            popupBottomConstraint?.constant += translation.y
+            var yTranslation = translation.y
+            if (popupBottomConstraint?.constant ?? 0.0) + yTranslation < Constants.Popup.bottomConstraintShown {
+                yTranslation = -((popupBottomConstraint?.constant ?? 0.0) - Constants.Popup.bottomConstraintShown)
+            }
+
+            popupBottomConstraint?.constant += yTranslation
             view.layoutIfNeeded()
             
             let currentAlpha = ((popupBottomConstraint?.constant ?? 0.0) - Constants.Popup.bottomConstraintHidden) / (2 * (Constants.Popup.bottomConstraintShown - Constants.Popup.bottomConstraintHidden))
@@ -114,7 +119,7 @@ public class UIPopupViewController: UIViewController {
             sender.setTranslation(.zero, in: view)
 
         case .ended:
-            if view.frame.origin.y > (popupBottomConstraint?.constant ?? 0) * 0.6 {
+            if popupBottomConstraint?.constant ?? 0 > Constants.Popup.bottomConstraintHidden * 0.4 {
                 hide()
             } else {
                 popupBottomConstraint?.constant = Constants.Popup.bottomConstraintShown
