@@ -26,6 +26,8 @@ public class UIPopupViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureRecognizer()
+        addPanGestureRecognizer()
+
         view.addSubview(popupView)
         popupView.addSubview(mainView)
 
@@ -62,6 +64,11 @@ public class UIPopupViewController: UIViewController {
         view.addGestureRecognizer(tapGestureRecognizer)
     }
 
+    private func addPanGestureRecognizer() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        view.addGestureRecognizer(panGestureRecognizer)
+    }
+
     private func show() {
         view.layoutIfNeeded()
         self.popupBottomConstraint?.constant = Constants.Popup.bottomConstraintShown
@@ -90,6 +97,38 @@ public class UIPopupViewController: UIViewController {
             hide()
         }
     }
+
+    @objc private func handlePan(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+
+        switch sender.state {
+        case .changed:
+
+            popupBottomConstraint?.constant += translation.y
+            view.layoutIfNeeded()
+            
+            let currentAlpha = ((popupBottomConstraint?.constant ?? 0.0) - Constants.Popup.bottomConstraintHidden) / (2 * (Constants.Popup.bottomConstraintShown - Constants.Popup.bottomConstraintHidden))
+            let alpha = max(0, currentAlpha)
+            view.backgroundColor = UIColor.black.withAlphaComponent(alpha)
+
+            sender.setTranslation(.zero, in: view)
+
+        case .ended:
+            if view.frame.origin.y > (popupBottomConstraint?.constant ?? 0) * 0.6 {
+                hide()
+            } else {
+                popupBottomConstraint?.constant = Constants.Popup.bottomConstraintShown
+                UIView.animate(withDuration: 0.3) {
+                    self.view.layoutIfNeeded()
+                    self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                }
+            }
+
+        default:
+            break
+        }
+    }
+
 }
 
 private extension UIPopupViewController {
