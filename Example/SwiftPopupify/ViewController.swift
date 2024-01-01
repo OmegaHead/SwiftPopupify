@@ -37,7 +37,6 @@ class ViewController: UIViewController {
         let redView = UIView()
         redView.backgroundColor = .red
         let customPopupViewController = UIPopupViewController(mainView: redView)
-        customPopupViewController.modalPresentationStyle = .overFullScreen
         present(customPopupViewController, animated: false, completion: nil)
     }
 

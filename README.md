@@ -9,7 +9,14 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## Usage
+
+To use the pod create a UIPopupViewController object by providing your custom view and present it from your view controller with **animated: false**.
+```swift
+let myView = UIView()
+let popupViewController = UIPopupViewController(mainView: myView)
+present(customPopupViewController, animated: false, completion: nil)
+```
 
 ## Installation
 

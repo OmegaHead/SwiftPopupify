@@ -137,6 +137,7 @@ public class UIPopupViewController: UIViewController {
     public init(mainView: UIView) {
         self.mainView = mainView
         super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .overFullScreen
     }
 
     required init?(coder: NSCoder) {
