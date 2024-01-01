@@ -59,6 +59,7 @@
 		5E86A995CEE70E0F48D22A2A1D17BEFB /* Pods-SwiftPopupify_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftPopupify_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		64940F2B2B3F17CD0016BC95 /* SwiftPopupify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPopupify.swift; sourceTree = "<group>"; };
 		64941D212B400B310016BC95 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		64DDD4332B4309D5001C725D /* example.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = example.gif; path = ../../../../Downloads/example.gif; sourceTree = "<group>"; };
 		6574742D0AF2BEB9D09BF725C8DCD4A1 /* Pods_SwiftPopupify_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftPopupify_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF39D4672BA8F215DC214397FE1C185 /* SwiftPopupify.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftPopupify.modulemap; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -166,6 +167,7 @@
 		70E8FC4E3AF22C7652151FB6685D7622 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				64DDD4332B4309D5001C725D /* example.gif */,
 				360400F17FA40A5F0A92C6C2CEAA29E3 /* LICENSE */,
 				4336F84120306D806AF832D613FE51D4 /* README.md */,
 				15EB9CABF935E863208AD7F1B871840D /* SwiftPopupify.podspec */,
