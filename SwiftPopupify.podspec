@@ -20,9 +20,6 @@ Pod::Spec.new do |s|
   - **Responsive Design:** SwiftPopupify adapts to different screen sizes and orientations, ensuring a consistent and responsive presentation.
   
   Whether you need to display informative messages, gather user input, or showcase rich media content, SwiftPopupify simplifies the process, saving you development time while delivering a polished and interactive UI.'
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
 
   s.homepage         = 'https://github.com/OmegaHead/SwiftPopupify'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
