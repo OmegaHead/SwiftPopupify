@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'SwiftPopupify'
   s.version          = '0.1.0'
   s.summary          = 'A library for handling popups in Swift applications.'
-  s.description = 'SwiftPopupify is a versatile and easy-to-use Swift library that empowers developers to effortlessly integrate and manage popups in their iOS applications. With SwiftPopupify, creating interactive and visually appealing popups becomes a breeze, enhancing user experience and engagement.
+  s.description      = 'SwiftPopupify is a versatile and easy-to-use Swift library that empowers developers to effortlessly integrate and manage popups in their iOS applications. With SwiftPopupify, creating interactive and visually appealing popups becomes a breeze, enhancing user experience and engagement.
 
   Key Features:
   - **Simple Integration:** Seamlessly integrate popups into your Swift projects with minimal code.
