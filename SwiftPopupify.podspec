@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'OmegaHead' => 'mishachupa2015@outlook.com' }
   s.source           = { :git => 'https://github.com/OmegaHead/SwiftPopupify.git', :tag => s.version.to_s }
-  s.swift-version    = '5.0'
+  s.swift_version    = '5.0'
   s.ios.deployment_target = '13.0'
 
   s.source_files = 'Classes/**/*'
